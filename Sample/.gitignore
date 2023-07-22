@@ -1,0 +1,26 @@
+node_modules/
+.expo/
+dist/
+npm-debug.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+web-build/
+
+# macOS
+.DS_Store
+
+yarn-error.log
+
+# env's
+.env
+.envrc
+
+pc-api-*.json
+# Local Netlify folder
+.netlify
+
+coverage/
