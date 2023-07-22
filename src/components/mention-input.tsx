@@ -13,8 +13,8 @@ import {
   generateValueWithAddedSuggestion,
   getMentionPartSuggestionKeywords,
   isMentionPartType,
-  parseValue,
 } from '../utils';
+import { parseValue } from '../utils/helpers';
 
 const MentionInput: FC<MentionInputProps> = ({
   value,
@@ -84,7 +84,7 @@ const MentionInput: FC<MentionInputProps> = ({
         return;
       }
 
-      onChange(newValue.trimEnd());
+      onChange(newValue.trimEnd()+" ");
 
       /**
        * Refocus on the input that was just blurred by a click event on PLATFORM.OS web
