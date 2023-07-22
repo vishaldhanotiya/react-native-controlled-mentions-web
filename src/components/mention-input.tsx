@@ -1,4 +1,4 @@
-import React, { FC, MutableRefObject, useMemo, useRef, useState } from 'react';
+import React, { FC, useMemo, useRef, useState } from 'react';
 import {
   NativeSyntheticEvent,
   TextInput,
@@ -20,7 +20,7 @@ const MentionInput: FC<MentionInputProps> = ({
   value,
   onChange,
   partTypes = [],
-  inputRef: propInputRef,
+  inputRef,
   containerStyle,
   onSelectionChange,
   ...textInputProps
@@ -84,7 +84,7 @@ const MentionInput: FC<MentionInputProps> = ({
         return;
       }
 
-      onChange(newValue.trimEnd()+" ");
+      onChange(newValue.trimEnd() + ' ');
 
       /**
        * Refocus on the input that was just blurred by a click event on PLATFORM.OS web
@@ -112,19 +112,6 @@ const MentionInput: FC<MentionInputProps> = ({
         setSelection({ start: newCursorPosition, end: newCursorPosition }); //<TextInput selection doesn't seem to work on mobile
       }
     };
-
-  const handleTextInputRef = (ref: TextInput) => {
-    textInput.current = ref as TextInput;
-
-    if (propInputRef) {
-      if (typeof propInputRef === 'function') {
-        propInputRef(ref);
-      } else {
-        (propInputRef as MutableRefObject<TextInput>).current =
-          ref as TextInput;
-      }
-    }
-  };
 
   const renderMentionSuggestions = (mentionType: MentionPartType) => (
     <React.Fragment key={mentionType.trigger}>
@@ -154,6 +141,7 @@ const MentionInput: FC<MentionInputProps> = ({
       </View>
       <View style={{ maxHeight: 120 }}>
         <TextInput
+          ref={inputRef}
           {...textInputProps}
           onContentSizeChange={(e) => onHeightChange(e)}
           value={plainText}
@@ -164,8 +152,6 @@ const MentionInput: FC<MentionInputProps> = ({
               height: plainText.length == 0 ? 40 : height,
             },
           ]}
-          ref={handleTextInputRef}
-          multiline
           {...(Platform.OS === 'web' ? { selection } : {})}
           onChangeText={onChangeInput}
           onSelectionChange={handleSelectionChange}

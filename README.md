@@ -10,6 +10,11 @@ Pretty simple and fully controlled mention input. It can:
 
 In addition, you can add custom styling for a regex pattern (like URLs) using the optimized recursive function for parsing the value.
 
+### Recent fixes
+1. v2.2.9:- Fix Textinput focus issue
+2. v2.2.8:- added space after selection mention
+
+
 Demo
 -
 Try it on Expo Snack: https://snack.expo.io/@dabakovich/mentionsapp
